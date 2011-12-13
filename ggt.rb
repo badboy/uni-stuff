@@ -1,6 +1,21 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+# Extended euclid
+#
+# Returns array with 3 elements:
+#   First element is the greatest common divisor,
+#   Second and third element are λ and μ from the following
+#   equation: ggt = λ * a + μ * b
+def euclid(a, b)
+  return [a, 1, 0] if b == 0
+
+  d1, s1, t1 = euclid b, a % b
+  d, s, t = d1, t1, s1-(a/b.to_f).floor*t1
+
+  [d, s, t]
+end
+
 def ggT(x, y)
   return y if x == 0
 
